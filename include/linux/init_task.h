@@ -16,6 +16,7 @@
 #include <linux/sched/autogroup.h>
 #include <net/net_namespace.h>
 #include <linux/sched/rt.h>
+#include <linux/task_integrity.h>
 #include <linux/livepatch.h>
 #include <linux/mm_types.h>
 
@@ -172,6 +173,9 @@ extern struct cred init_cred;
 # define INIT_VTIME(tsk)
 #endif
 
+# define INIT_INTEGRITY(tsk)
+# define INIT_TASK_INTEGRITY(integrity)
+
 #define INIT_TASK_COMM "swapper"
 
 #ifdef CONFIG_RT_MUTEXES
@@ -300,6 +304,7 @@ extern struct cred init_cred;
 	INIT_KASAN(tsk)							\
 	INIT_LIVEPATCH(tsk)						\
 	INIT_TASK_SECURITY						\
+	INIT_INTEGRITY(tsk)						\
 }
 
 
